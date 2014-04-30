@@ -56,6 +56,10 @@ describe 'Exercise 3: Reporting API - Presenting all Sales Data' do
     it 'returns an object with the correct sales total' do
       expect(json['total']).to eql(27.50)
     end
+
+    it 'returns an object with only the desired keys' do
+      expect(json.keys.sort).to eql(['number_of_sales', 'total'])
+    end
   end
 
   describe '#sales_per_item' do
@@ -89,6 +93,11 @@ describe 'Exercise 3: Reporting API - Presenting all Sales Data' do
 
     it 'returns the correct total sales value for burgers' do
       expect(json['burger']['total']).to eql(19.50)
+    end
+
+    it 'returns only the expected data keys for each item' do
+      all_data_keys = json.values.flat_map { |data| data.keys }.uniq
+      expect(all_data_keys).to eql(['total', 'number_of_sales'])
     end
   end
 end
