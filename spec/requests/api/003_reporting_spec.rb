@@ -96,8 +96,8 @@ describe 'Exercise 3: Reporting API - Presenting all Sales Data' do
     end
 
     it 'returns only the expected data keys for each item' do
-      all_data_keys = json.values.flat_map { |data| data.keys }.uniq
-      expect(all_data_keys).to eql(['total', 'number_of_sales'])
+      all_data_keys = json.values.flat_map { |data| data.keys }.uniq.sort
+      expect(all_data_keys).to eql(['number_of_sales', 'total'])
     end
   end
 end
